@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<!--
+  Welcome! This is a complete web page in a single file.
+  It has three parts:
+    1. <head>  - information about the page (title, fonts, styles)
+    2. <style> - CSS, which controls how things LOOK (colours, sizes, spacing)
+    3. <body>  - HTML, which is the actual CONTENT (headings, text, buttons)
+
+  Try changing some text below, save, and refresh your browser to see it update.
+  Anything in [square brackets] is a placeholder for you to replace.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hearth & Pine | Luxury Private Chef in Simcoe County & Muskoka</title>
+  <meta name="description" content="Luxury private chef serving Simcoe County and Muskoka. Intimate dinners, cottage weekends, and weekly meal service.">
+
+  <!-- Fonts from Google: an elegant serif for headings, a clean sans-serif for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Colours ----------
+       Defining colours once here means you can re-theme the
+       whole site by changing just these few lines. */
+    :root {
+      --forest: #1f2e27;     /* deep green, like Muskoka pines */
+      --cream:  #f7f3ec;     /* warm off-white background */
+      --gold:   #b8955a;     /* accent colour for luxury feel */
+      --text:   #2b2b2b;
+      --muted:  #6b6b6b;
+    }
+
+    /* ---------- Basics ---------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    a { color: inherit; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .eyebrow {               /* the small gold label above headings */
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 34px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    .button:hover { background: var(--gold); color: var(--forest); }
+
+    /* ---------- Navigation bar ---------- */
+    nav {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 28px 0;
+      z-index: 10;
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    nav ul { display: flex; gap: 32px; list-style: none; }
+    nav ul a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      opacity: 0.85;
+    }
+    nav ul a:hover { opacity: 1; color: var(--gold); }
+
+    /* ---------- Hero (the big top section) ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--cream);
+      /* A layered gradient stands in for a photo. Later you could swap in:
+         background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('your-photo.jpg') center/cover; */
+      background:
+        radial-gradient(ellipse at top, rgba(184,149,90,0.25), transparent 60%),
+        linear-gradient(160deg, #2c4036 0%, var(--forest) 55%, #121a16 100%);
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      margin: 20px 0;
+    }
+    .hero p {
+      max-width: 560px;
+      margin: 0 auto 40px;
+      font-size: 1.05rem;
+      opacity: 0.85;
+    }
+
+    /* ---------- General section spacing ---------- */
+    section { padding: 110px 0; }
+    .section-title { text-align: center; margin-bottom: 64px; }
+    .section-title h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-top: 12px; }
+
+    /* ---------- About ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-image {
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, #d9cbb3, #b8955a);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--forest);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+    .about-text h2 { font-size: 2.4rem; margin: 12px 0 24px; }
+    .about-text p { margin-bottom: 18px; color: var(--muted); }
+
+    /* ---------- Services ---------- */
+    .services { background: #fff; }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .service {
+      padding: 44px 32px;
+      border: 1px solid #e8e1d4;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+    .service .number { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; color: var(--gold); }
+    .service h3 { font-size: 1.6rem; margin: 10px 0 16px; }
+    .service p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ---------- Service area ---------- */
+    .area { background: var(--forest); color: var(--cream); text-align: center; }
+    .area h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin: 12px 0 24px; }
+    .area p { max-width: 640px; margin: 0 auto 36px; opacity: 0.8; }
+    .towns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .towns span {
+      border: 1px solid rgba(184,149,90,0.5);
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- Testimonial ---------- */
+    .testimonial { text-align: center; }
+    .testimonial blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-style: italic;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+    .testimonial cite { font-style: normal; color: var(--muted); font-size: 0.9rem; letter-spacing: 0.1em; }
+
+    /* ---------- Contact ---------- */
+    .contact { background: #fff; text-align: center; }
+    .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 36px; }
+    .contact-details { margin-top: 32px; color: var(--muted); font-size: 0.95rem; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: #121a16;
+      color: rgba(247,243,236,0.6);
+      text-align: center;
+      padding: 32px 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- Phones & small screens ----------
+       Everything inside this block only applies when the
+       screen is narrower than 800px. */
+    @media (max-width: 800px) {
+      nav ul { display: none; }               /* hide menu links on phones */
+      .about-grid, .service-grid { grid-template-columns: 1fr; }
+      section { padding: 80px 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION: links jump to sections further down the page using their id -->
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">Hearth &amp; Pine</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#area">Service Area</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO: the first thing visitors see -->
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Private Chef &middot; Simcoe County &amp; Muskoka</p>
+      <h1>Exceptional dining,<br>in the comfort of your home.</h1>
+      <p>Bespoke menus crafted from Ontario's finest local ingredients, prepared and served at your home, cottage, or private event.</p>
+      <a href="#contact" class="button">Reserve Your Date</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-image">[ Chef photo goes here ]</div>
+      <div class="about-text">
+        <p class="eyebrow">Meet the Chef</p>
+        <h2>Rooted in Ontario. Refined by experience.</h2>
+        <p>[Chef Name] brings years of fine-dining experience to the kitchens of Simcoe County and Muskoka, creating unforgettable meals around your table.</p>
+        <p>Every menu begins with a conversation about your tastes, dietary needs, and the occasion, then comes to life with produce from Holland Marsh farms, fresh Georgian Bay fish, and ingredients from local growers.</p>
+        <p>You relax with your guests. We handle everything, from shopping to clean-up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES: three "cards" side by side -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow">What We Offer</p>
+        <h2>Tailored to every occasion</h2>
+      </div>
+      <div class="service-grid">
+        <div class="service">
+          <div class="number">I</div>
+          <h3>Intimate Dinners</h3>
+          <p>Multi-course tasting menus for anniversaries, birthdays, and evenings that deserve something special. For 2 to 20 guests.</p>
+        </div>
+        <div class="service">
+          <div class="number">II</div>
+          <h3>Cottage Weekends</h3>
+          <p>Breakfast through dinner for your whole stay on the lake, so your weekend is about the dock, not the kitchen.</p>
+        </div>
+        <div class="service">
+          <div class="number">III</div>
+          <h3>Weekly Meal Service</h3>
+          <p>Chef-prepared, nutritious meals made in your kitchen and ready for the week ahead. Fully customized to your household.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section id="area" class="area">
+    <div class="container">
+      <p class="eyebrow">Where We Cook</p>
+      <h2>Serving Simcoe County &amp; Muskoka</h2>
+      <p>From Georgian Bay waterfront homes to cottages on the Muskoka lakes, we bring the restaurant experience to you.</p>
+      <div class="towns">
+        <span>Barrie</span>
+        <span>Collingwood</span>
+        <span>Blue Mountains</span>
+        <span>Orillia</span>
+        <span>Wasaga Beach</span>
+        <span>Midland</span>
+        <span>Innisfil</span>
+        <span>Bracebridge</span>
+        <span>Gravenhurst</span>
+        <span>Huntsville</span>
+        <span>Port Carling</span>
+        <span>Lake of Bays</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL (placeholder - replace with a real client review) -->
+  <section class="testimonial">
+    <div class="container">
+      <blockquote>"[Add a client review here once you have one. A short, heartfelt quote works best.]"</blockquote>
+      <cite>&mdash; [CLIENT NAME, TOWN]</cite>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <p class="eyebrow">Get in Touch</p>
+        <h2>Let's plan your menu</h2>
+      </div>
+      <p>Dates fill quickly, especially during cottage season. Reach out to check availability and start designing your experience.</p>
+      <!-- "mailto:" opens the visitor's email app. Replace with your real address. -->
+      <a href="mailto:hello@example.com" class="button">Send an Enquiry</a>
+      <div class="contact-details">
+        <p>[hello@example.com] &middot; [(705) 555-0123]</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <!-- The bit of JavaScript below fills in the current year automatically -->
+    &copy; <span id="year"></span> Hearth &amp; Pine Private Dining &middot; Simcoe County &amp; Muskoka, Ontario
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
